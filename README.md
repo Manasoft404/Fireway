@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+# FireWay
+ Raspberry pI3 AndroidThings Firebase RealTime Database and WebApplication client
+Simulation project for the control and verification of the state of a remote road fire
 
-You can use the [editor on GitHub](https://github.com/Manasoft404/Fireway/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Introducing "FireWay"... ##
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<img src="art/power_on.png" alt="phone image" width="200px" />
+<img src="art/power_off.png" alt="phone image" width="200px" />
 
-### Markdown
+I decided to use a Raspberry Pi 3 running Android Things and Firebase Realtime Database to control and verificatiion state of road fire. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Mainly because Firebase has a *VERY* powerful tool for monitoring if a client is connected to your Realtime database or not. 
 
-```markdown
-Syntax highlighted code block
+## Setup Requirements
 
-# Header 1
-## Header 2
-### Header 3
+In order to get the app running yourself, you need to:
 
-- Bulleted
-- List
+1. Checkout this repository.
+2. Create a new Firebase Project [here](https://firebase.google.com).
+3. Download the *google-service.json* file from the Firebase Console to both the app folder and the companion-app folder.
+4. Set the Realtime database rules to be read and write for everyone (Firebase Console -> Database -> Rules). (WARNING: This means there is NO security on our database – you should not have these rules in production)
 
-1. Numbered
-2. List
+	    {
+	     "rules": {
+	         ".read": true,
+	         ".write": true
+	       }
+	    }
 
-**Bold** and _Italic_ and `Code` text
+5. Deploy the “Things” module to the Raspberry Pi or equivalent Android Things device (you need to make sure you have setup your Pi with the Android Things OS).
+6. Deploy the “companion-app” module to your phone.
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Manasoft404/Fireway/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+## References
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- Building an Online Presence System using Firebase Realtime Database - https://firebase.googleblog.com/2013/06/how-to-build-presence-system.html
+- Android Things Setup - https://developer.android.com/things/index.html
