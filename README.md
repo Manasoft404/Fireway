@@ -4,7 +4,7 @@ Simulation project for the control and verification of the state of a remote roa
 
 ## Introducing "FireWay"... ##
 
-<img src="art/power_on.png" alt="phone image" width="200px" />
+<img src="fireway_webapp.PNG" alt="phone image" width="200px" />
 <img src="art/power_off.png" alt="phone image" width="200px" />
 
 I decided to use a Raspberry Pi 3 running Android Things and Firebase Realtime Database to control and verificatiion state of road fire. 
