@@ -6,7 +6,7 @@ Simulation project for the control and verification of the state of a remote roa
 
 <img src="fireway_webapp.PNG" alt="phone image" width="800px" />
 
-<iframe align="center" width="1280" height="720" src="https://www.youtube.com/embed/3cWpZ1yhSFE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/3cWpZ1yhSFE" frameborder="0" ></iframe>
 
 I decided to use a Raspberry Pi 3 running Android Things and Firebase Realtime Database to control and verificatiion state of road fire. 
 
