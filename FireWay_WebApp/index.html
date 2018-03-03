@@ -1,0 +1,241 @@
+<!doctype html>
+<!--[if lte IE 7 ]><html class="ie7 oldie" dir="ltr" lang="en-US"><![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" dir="ltr" lang="en-US"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html dir="ltr" lang="en-US"><!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Feu routier</title>
+	<meta name="description" content="Application Feu routier." />
+	<meta name="keywords" content="HTML5, Template, Design, Development" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="shortcut icon" href="favicon.jf" />
+	<link rel="apple-touch-icon" href="images/touch-icon.png" />
+	<link rel="image_src" href="images/touch-icon.png" />
+
+	<link rel="stylesheet" href="css/style.css" />
+	<style type="text/css">
+		#f1-r,#f1-o,#f1-v,#f2-r,#f2-o,#f2-v{
+			background-color: #000000;
+		}
+		
+	
+	</style>
+
+	<!--[if IE]>
+	<script type="text/javascript" src="js/ie.js"></script>
+	<![endif]-->
+</head>
+<body class="no-js">
+	<header id="header">
+		<hgroup id="logo">
+			<h1><a href="#"><img src="tmp/logo.jfif" alt="FireWay" /></a></h1>
+		</hgroup>
+		<nav id="menu">
+			<ul>
+				<li class="arrow">
+					<a href="#">  FEU 1  </a>
+					
+						<li><a href="#" id="f1-r">Rouge</a></li>
+						<li><a href="#" id="f1-o">Orange</a></li>
+						<li><a href="#" id="f1-v">Vert</a></li>
+				</li>
+				
+				<li class="arrow" style="margin-top: 50px;">
+					<a href="#">  FEU 2  </a>
+					
+						<li><a href="#" id="f2-r">Rouge</a></li>
+						<li><a href="#" id="f2-o">Orange</a></li>
+						<li><a href="#" id="f2-v">Vert</a></li>		
+				</li>
+				<li style="margin-top: 30px;"><a href="#">CHANGER</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<section id="main">
+		<div class="wrapper">
+			<h2>FEU ROUTIER</h2>
+			
+			<p>Projet de simulation pour le control et la verification d'etat d'un feu routier à distance. ......</p>
+
+			<div class="alert alert-info">
+  				<strong>RASPBERRY PI</strong> <p id="info"> <strong>NON CONNECTEE</strong></p>.
+			</div>	
+
+			<a href="#" class="button" id="btn">CHANGER D'ETAT</a>
+			<p><a href="#" class="button" id="stop">STOP-MARCHE</a> <h4 id="stp"></h4> </p>
+		</div>
+	</section>
+
+	<footer id="footer">
+		
+		<div class="links">
+			<span class="copyright">&copy; TRAVAIL PRATIQUE. FEU ROUTIER</span>
+			
+		</div>
+		<div class="clear"></div>
+	</footer>
+
+	<div id="supersized-loader"></div>
+	<ul id="supersized"></ul>
+
+	
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "",
+	    authDomain: "",
+	    databaseURL: "",
+	    projectId: "",
+	    storageBucket: "",
+	    messagingSenderId: ""
+	  };
+	  firebase.initializeApp(config);
+
+	  // Get a reference to the database service
+  	  var database = firebase.database();
+
+  	   database.ref('/online').on('value', function(snapshot) {
+  			var onOff = snapshot.val();
+			if(onOff){
+				var info = document.getElementById("info");
+				info.innerHTML = "CONNECTEE";
+			}else{
+				var info = document.getElementById("info");
+				info.innerHTML = "NON CONNECTEE";
+			}
+	  });
+
+  	  // FEU 1
+  	  database.ref('p1/led_rouge').on('value', function(snapshot) {
+  			var f1rEtat = snapshot.val();
+			if(f1rEtat){
+				var f1r = document.getElementById("f1-r");
+				f1r.style.backgroundColor = "red";
+			}else{
+				var f1r = document.getElementById("f1-r");
+				f1r.style.backgroundColor = "black";
+			}
+	  });
+
+	  database.ref('p1/led_orange').on('value', function(snapshot) {
+  			var f1rEtat = snapshot.val();
+			if(f1rEtat){
+				var f1o = document.getElementById("f1-o");
+				f1o.style.backgroundColor = "orange";
+			}else{
+				var f1o = document.getElementById("f1-o");
+				f1o.style.backgroundColor = "black";
+			}
+	  });
+
+	   database.ref('p1/led_vert').on('value', function(snapshot) {
+  			var f1rEtat = snapshot.val();
+			if(f1rEtat){
+				var f1v = document.getElementById("f1-v");
+				f1v.style.backgroundColor = "green";
+			}else{
+				var f1v = document.getElementById("f1-v");
+				f1v.style.backgroundColor = "black";
+			}
+	  });
+
+	   //FEU 2
+
+	   database.ref('p2/led_rouge').on('value', function(snapshot) {
+  			var f2rEtat = snapshot.val();
+			if(f2rEtat){
+				var f2r = document.getElementById("f2-r");
+				f2r.style.backgroundColor = "red";
+			}else{
+				var f2r = document.getElementById("f2-r");
+				f2r.style.backgroundColor = "black";
+			}
+	  });
+
+	  database.ref('p2/led_orange').on('value', function(snapshot) {
+  			var f2rEtat = snapshot.val();
+			if(f2rEtat){
+				var f2o = document.getElementById("f2-o");
+				f2o.style.backgroundColor = "orange";
+			}else{
+				var f2o = document.getElementById("f2-o");
+				f2o.style.backgroundColor = "black";
+			}
+	  });
+	  
+	   database.ref('p2/led_vert').on('value', function(snapshot) {
+  			var f2rEtat = snapshot.val();
+			if(f2rEtat){
+				var f2v = document.getElementById("f2-v");
+				f2v.style.backgroundColor = "green";
+			}else{
+				var f2v = document.getElementById("f2-v");
+				f2v.style.backgroundColor = "black";
+			}
+	  });
+
+	   var btn = document.getElementById("btn");
+	   var stop = document.getElementById("stop");
+	   var stp = document.getElementById("stp");
+	   btn.onclick = function(){
+	   		var p1;
+	   		database.ref('/p1/led_rouge').once('value').then(function(snapshot) {
+  				p1 = snapshot.val() ;
+  				if(p1){
+  					database.ref('/p1' ).set({
+					    led_rouge: false,
+					    led_orange:false,
+					    led_vert:true
+				  	});
+				  	database.ref('/p2' ).set({
+					    led_rouge: true,
+					    led_orange:false,
+					    led_vert:false
+				  	});
+  				}else{
+  					database.ref('/p1' ).set({
+					    led_rouge: true,
+					    led_orange:false,
+					    led_vert:false
+				  	});
+  					database.ref('/p2' ).set({
+					    led_rouge: false,
+					    led_orange:false,
+					    led_vert:true
+				  	});
+  				}  				
+			});	   		
+	   };
+
+	   stop.onclick = function(){
+	   		var p1;
+	   		database.ref('/stop').once('value').then(function(snapshot) {
+  				p1 = snapshot.val() ;
+  					database.ref('/stop' ).set(!p1); 
+  					if(!p1){
+  						stp.innerHTML = "EN PAUSE";
+
+  					}else{
+  						stp.innerHTML = "EN MARCHE";
+  					}
+
+			});	   		
+	   };
+	   
+
+	  
+	</script>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.common.min.js"></script>
+	<script type="text/javascript" src="js/plugins/jquery.supersized.min.js"></script>
+	<script type="text/javascript">
+		var supersized_slides = [{ image : 'tmp/map.jfif' }];
+	</script>
+	<script type='text/javascript' src='js/site.js'></script>
+</body>
+</html>
